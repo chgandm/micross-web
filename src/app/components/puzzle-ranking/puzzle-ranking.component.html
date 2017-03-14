@@ -1,0 +1,73 @@
+<div class="row margin__top--m">
+  <div class="col-xs-12">
+    <h1>
+      <i class="icon-table" aria-hidden="true"></i> Ranking
+    </h1>
+  </div>
+</div>
+
+<div class="row margin__top--m">
+  <div class="col-xs-5">
+    <app-puzzle-preview
+      *ngIf="(puzzlePreview | async) != null"
+      width="120"
+      height="120"
+      color="#ebeeef"
+      [puzzleData]="puzzlePreview">
+    </app-puzzle-preview>
+    <div *ngIf="(puzzlePreview | async) == null">
+      <div class="puzzle__no-preview-img">
+        <i class="icon-question-circle-o" aria-hidden="true"></i>
+      </div>
+      <div class="margin__top--m">Complete the puzzle to view the picture!</div>
+    </div>
+  </div>
+  <div class="col-xs-7">
+    <div class="puzzle__name">{{(puzzleMetaData | async)?.title.en}}</div>
+    <div class="puzzle__size">{{(puzzleMetaData | async)?.size}}</div>
+    <div *ngIf="(puzzleMetaData | async) != null" class="margin__top--m">
+      Made with <i class="icon-heart-o color-highlight"></i> by {{(puzzleMetaData | async)?.author}}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="envInfo.embeddedInWebView" class="row margin__top--s">
+  <button (click)="play()" class="btn btn-c_primary"><i class="icon-gamepad" aria-hidden="true"></i> Play Now!</button>
+</div>
+
+<div class="row margin__top--xl">
+  <div class="col-xs-12">
+    <table class="players__table">
+      <thead class="players__table-header">
+        <tr>
+          <th class="players__column-rank">Rank</th>
+          <th class="players__column-nickname">Nickname</th>
+          <th class="players__column-mistakes">Mistakes</th>
+          <th class="players__column-time">Time</th>
+        </tr>
+        </thead>
+      <tbody class="players__table-body">
+        <tr *ngIf="(ranking | async) == null">
+          <td class="players__row--loading" colspan="4">
+            <img src="assets/img/spin.svg" />
+          </td>
+        </tr>
+        <tr *ngFor="let player of ranking | async; let i = index;"
+            class="players__row"
+            [class.players__row--first]="(i == 0)"
+            [class.players__row--second]="(i == 1)"
+            [class.players__row--third]="(i == 2)">
+          <td class="players__column-rank">
+            <i *ngIf="(i == 0)" class="icon-trophy color-gold"></i>
+            <i *ngIf="(i == 1)" class="icon-trophy color-silver"></i>
+            <i *ngIf="(i == 2)" class="icon-trophy color-bronze"></i>
+            <span *ngIf="(i >= 3)" >{{i + 1}}</span>
+          </td>
+          <td class="players__column-nickname">{{player.nickname}}</td>
+          <td class="players__column-mistakes">{{player.mistakes}}</td>
+          <td class="players__column-time">{{player.time | puzzletime}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

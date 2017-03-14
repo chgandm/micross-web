@@ -1,0 +1,33 @@
+<div class="wrapper container-fluid">
+  <div *ngIf="envInfo.debug" class="row">
+    <div style="text-align: left">
+      <ul>
+        <li>Embedded in Web View: {{envInfo.embeddedInWebView}}</li>
+        <li>Modal: {{envInfo.modal}}</li>
+        <li>Logged In: {{(envInfo.getUser() | async)?.loggedIn}}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row top-row">
+    <div class="col-xs-1">
+      <div class="back-button" (click)="navigateBack()" *ngIf="navigationEnabled">
+        <i [@transitionInOut] class="icon-arrow-left" aria-hidden="true"></i>
+      </div>
+    </div>
+    <div class="col-xs-10">
+      <a (click)="navigateHome()" routerLinkActive="active">
+        <img [@logoStateFull]="(logoStateFull) ? 'full' : 'collapsed'"
+             id="logo"
+             class="logo"
+             src="assets/img/logo.png"
+             srcset="assets/img/logo.png 1x, assets/img/logo@2x.png 2x, assets/img/logo@3x.png 3x"/>
+      </a>
+    </div>
+    <div class="col-xs-1"></div>
+  </div>
+  <div class="row">
+    <div class="content container">
+      <router-outlet><!-- This is where the content goes --></router-outlet>
+    </div>
+  </div>
+</div>

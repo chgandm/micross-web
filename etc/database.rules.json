@@ -1,0 +1,51 @@
+{
+  "rules": {
+    "puzzleRecords": {
+      ".read": "true",
+      "$puzzle": {
+        "records": {
+          ".indexOn": ["time"],
+          "$record": {
+            ".write": "auth != null && newData.exists() && !data.exists()"
+          }
+        }
+      }
+    },
+    "puzzles": {
+      "metadata": {
+        ".read": "true",
+        "5x5": {
+          "$puzzle": {
+            ".write": "auth != null && newData.exists()"
+          }
+        },
+        "10x10": {
+          "$puzzle": {
+            ".write": "auth != null && newData.exists()"
+          }
+        },
+        "15x15": {
+          "$puzzle": {
+            ".write": "auth != null && newData.exists()"
+          }
+        }
+      },
+      "data": {
+        ".read": "auth != null",
+        "$puzzle": {
+          ".write": "auth != null && newData.exists()"
+        }
+      }
+    },
+    "topPlayers": {
+      ".read": "true",
+      ".write": "false"
+    },
+    "userRecords": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    }
+  }
+}

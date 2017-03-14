@@ -1,0 +1,82 @@
+@import '../../../styles.scss';
+
+.puzzles__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style:none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.puzzles__card {
+  width: 100%;
+  text-align: left;
+  background-color: $color-card-background;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
+  border-radius: 2px;
+  padding: 14px;
+  margin-bottom: 9px;
+  cursor: pointer;
+}
+
+.puzzles__no-preview {
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 4.5em;
+  color: $color-background;
+}
+
+.puzzles__detail-button {
+  color: $color-highlight;
+  font-size: 2.3em;
+  line-height: 60px;
+  height: 60px;
+  vertical-align: middle;
+}
+
+.puzzles__title {
+  font-size: 1.5em;
+}
+
+.puzzles__trophies {
+  font-size: 0.9em;
+  color: $color-font-secondary;
+}
+
+.puzzles__loading {
+  width: 100%;
+  text-align: center;
+}
+
+.puzzles__nomore {
+  width: 100%;
+  text-align: center;
+}
+
+.puzzles__loadmore {
+  width: 100%;
+  padding: 10px;
+  font-size: 2em;
+  color: $color-highlight;
+  cursor: pointer;
+  text-align: center;
+}
+
+.trophies__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style:none;
+  margin: 0;
+  padding: 0;
+}
+
+.trophies__list-item {
+  margin-right: 14px;
+}

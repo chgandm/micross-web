@@ -1,0 +1,159 @@
+/*
+ * Variable Definitions
+ * --------------------
+ */
+
+$color-background: #121a1d;
+$color-background-contrast: #fef4e8;
+$color-background-secondary: #182327;
+$color-card-background: $color-background-secondary;
+$color-table-background: #25343a;
+$color-highlight: #f5695e;
+
+$color-negative: #c36664;
+
+$color-foreground-primary: #ebeeef;
+$color-font-primary: $color-foreground-primary;
+$color-font-secondary: #8b9aa0;
+
+$color-gold: #f8aa51;
+$color-silver: #9eabb0;
+$color-bronze: #c4544b;
+
+$font-family: Roboto, Arial, sans-serif;
+$font-size-h1: 2em;
+$font-size-h1-xxs: 1.8em;
+$font-size-h2: 1.5em;
+
+$margin-xs: 8px;
+$margin-s: 12px;
+$margin-m: 16px;
+$margin-l: 20px;
+$margin-xl: 24px;
+
+$screen-xs: 767px;
+$screen-xxs: 576px;
+
+/*
+ * Common Styles
+ * -------------
+ */
+
+body {
+  font-family: $font-family;
+  background: $color-background;
+  color: $color-font-primary;
+}
+
+h1 {
+  font-size: $font-size-h1;
+}
+
+@media (max-width: $screen-xxs) {
+  h1 {
+    font-size: $font-size-h1-xxs;
+  }
+}
+
+h2 {
+  font-size: $font-size-h2;
+  text-align: left;
+  color: $color-font-secondary;
+}
+
+h1:after {
+  content:' ';
+  margin-top: $margin-xs;
+  display: block;
+  border: 1px solid $color-highlight;
+}
+
+a {
+  color: $color-highlight;
+}
+
+.btn-c_primary {
+  background-color: $color-highlight;
+  border-color: desaturate($color-highlight, 30%);
+  color: $color-font-primary;
+}
+
+.btn-c_primary:hover,
+.btn-c_primary:active,
+.btn-c_primary:focus {
+  background-color: saturate($color-highlight, 70%);
+  border-color: saturate($color-highlight, 50%);
+  color: white;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.margin__left--xs {
+  margin-left: $margin-xs;
+}
+
+.margin__left--s {
+  margin-left: $margin-s;
+}
+
+.margin__bottom--xs {
+  margin-bottom: $margin-xs;
+}
+
+.margin__top--xs {
+  margin-top: $margin-xs;
+}
+
+.margin__right--xs {
+  margin-right: $margin-xs;
+}
+
+.margin__right--s {
+  margin-right: $margin-s;
+}
+
+.margin__top--s {
+  margin-top: $margin-s;
+}
+
+.margin__top--m {
+  margin-top: $margin-m;
+}
+
+.margin__top--l {
+  margin-top: $margin-l;
+}
+
+.margin__top--xl {
+  margin-top: $margin-xl;
+}
+
+.margin__bottom--xl {
+  margin-bottom: $margin-xl;
+}
+
+.color-gold {
+  color: $color-gold;
+}
+
+.color-silver {
+  color: $color-silver;
+}
+
+.color-bronze {
+  color: $color-bronze;
+}
+
+.color-highlight {
+  color: $color-highlight;
+}
+
+.color-secondary {
+  color: $color-font-secondary;
+}
+
+.color-negative {
+  color: $color-negative;
+}

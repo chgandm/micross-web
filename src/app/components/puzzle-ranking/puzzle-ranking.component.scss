@@ -1,0 +1,71 @@
+@import '../../../styles.scss';
+
+.puzzle__name {
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.puzzle__no-preview-img {
+  width: 90px;
+  height: 90px;
+  line-height: 90px;
+  margin: 0 auto;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 4.5em;
+  border: 1px solid $color-font-secondary;
+  color: $color-font-secondary;
+}
+
+.players__table {
+  width: 100%;
+  border-collapse:collapse;
+}
+
+.players__table-header {
+  font-size: 1.3em;
+}
+
+.players__table-body {
+  background-color: $color-card-background;
+  box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.2);
+  height: 150px;
+}
+
+.players__column-rank {
+  text-align: center;
+  width: 90px;
+}
+
+.players__column-mistakes {
+  text-align: center;
+}
+
+.players__column-nickname {
+  text-align: left;
+}
+
+.players__column-time {
+  text-align: center;
+  width: 110px;
+}
+
+.players__row {
+  height: 2.3em;
+}
+
+.players__row--first, .players__row--second, .players__row--third {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.players__row--unranked {
+  height: 0.9em;
+  font-size: 0.9em;
+}
+
+.players__row--loading {
+  padding: 20px;
+  background-color: $color-card-background;
+}
+

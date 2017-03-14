@@ -1,0 +1,79 @@
+@import '../../../styles';
+
+.puzzle-size__container {
+  text-align: center;
+}
+
+.puzzle-size__button {
+  background-color: $color-background-secondary;
+  border-color: lighten($color-highlight, 25%);
+  color: $color-font-secondary;
+  width: 85px;
+}
+
+.puzzle-size__button-active,
+.puzzle-size__button:hover,
+.puzzle-size__button:active,
+.puzzle-size__button:focus {
+  background-color: transparent;
+  border-color: $color-highlight;
+  color: $color-font-secondary;
+}
+
+.puzzle-size__button-active {
+  color: $color-font-primary;
+  font-weight: bold;
+}
+
+.puzzle-preview {
+  width: 120px;
+  height: 120px;
+  border: 1px solid $color-font-secondary;
+}
+
+.puzzle-editor__grid {
+
+}
+
+.circle {
+  border-radius: 50%;
+  display: inline-block;
+  background: $color-font-secondary;
+  color: $color-background;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  vertical-align: middle;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* http://stackoverflow.com/questions/20456694/grid-of-responsive-squares/20457076#20457076 */
+.cell {
+  float:left;
+  position: relative;
+  margin:0%;
+  background-color: $color-background-secondary;
+  border: 1px solid $color-background;
+  overflow:hidden;
+  cursor: pointer;
+}
+
+.cell-active {
+  background-color: $color-highlight;
+}
+
+.cell-5x5 {
+  width: 20%;
+  padding-bottom : 20%; /* = width for a 1:1 aspect ratio */
+}
+
+.cell-10x10 {
+  width: 10%;
+  padding-bottom : 10%;
+}
+
+.cell-15x15 {
+  width: 6.66%;
+  padding-bottom : 6.66%;
+}

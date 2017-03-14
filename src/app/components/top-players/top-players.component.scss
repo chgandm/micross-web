@@ -1,0 +1,69 @@
+@import '../../../styles.scss';
+
+.players__table {
+  width: 100%;
+  border-collapse:collapse;
+}
+
+.players__table-header {
+  font-size: 1.3em;
+}
+
+.players__table-body {
+  background-color: $color-table-background;
+  box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.2);
+  height: 150px;
+}
+
+.players__table-footer {
+  font-size: 0.8em;
+}
+
+.players__column-rank {
+  text-align: center;
+  width: 100px;
+}
+
+.players__column-nickname {
+  text-align: left;
+}
+
+.players__column-trophies {
+  text-align: center;
+  width: 50px;
+}
+
+.players_column-trophies--gold {
+  font-size: 1.3em;
+  color: $color-gold;
+}
+
+.players_column-trophies--silver {
+  font-size: 1.2em;
+  color: $color-silver;
+}
+
+.players_column-trophies--bronze {
+  font-size: 1.1em;
+  color: $color-bronze;
+}
+
+.players__row {
+  height: 2.3em;
+}
+
+.players__row--first, .players__row--second, .players__row--third {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.players__row--unranked {
+  height: 0.9em;
+  font-size: 0.9em;
+}
+
+.players__row--loading {
+  padding: 20px;
+  background-color: $color-background;
+}
+

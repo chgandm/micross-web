@@ -1,0 +1,32 @@
+@import '../styles.scss';
+
+.wrapper {
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+.top-row {
+  text-align: center;
+  box-shadow: 0 1px 7px 0 rgba(0,0,0,0.2);
+  background-color: $color-background-contrast;
+}
+
+.back-button {
+  color: $color-background-secondary;
+  font-size: 2em;
+  cursor: pointer;
+  height: 65px;
+  line-height: 65px;
+  vertical-align: middle;
+}
+
+.logo {
+  width: 190px;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.content {
+  max-width: 500px;
+}

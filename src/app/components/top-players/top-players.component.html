@@ -1,0 +1,63 @@
+    <div class="row margin__top--m">
+      <div class="col-xs-12">
+        <h1>
+          <i class="icon-users" aria-hidden="true"></i> Top Players
+        </h1>
+      </div>
+    </div>
+    <div class="row margin__top--m">
+      <div class="col-xs-12">
+        <table class="players__table">
+          <thead class="players__table-header">
+          <tr>
+            <th class="players__column-rank">Rank</th>
+            <th class="players__column-nickname">Nickname</th>
+            <th class="players__column-trophies players_column-trophies--gold">
+              <i class="icon-trophy" aria-hidden="true"></i>
+            </th>
+            <th class="players__column-trophies players_column-trophies--silver">
+              <i class="icon-trophy" aria-hidden="true"></i>
+            </th>
+            <th class="players__column-trophies players_column-trophies--bronze">
+              <i class="icon-trophy" aria-hidden="true"></i>
+            </th>
+          </tr>
+          </thead>
+          <tbody class="players__table-body">
+            <tr *ngIf="loading">
+              <td class="players__row--loading" colspan="5">
+                <img src="assets/img/spin.svg" />
+              </td>
+            </tr>
+            <tr *ngFor="let player of leaderBoard; let i = index;"
+                class="players__row"
+                [class.players__row--first]="(i == 0)"
+                [class.players__row--second]="(i == 1)"
+                [class.players__row--third]="(i == 2)">
+              <td class="players__column-rank">{{i + 1}}</td>
+              <td class="players__column-nickname">{{player.nickname}}</td>
+              <td class="players__column-trophies players_column-trophies--gold">{{player.gold}}</td>
+              <td class="players__column-trophies players_column-trophies--silver">{{player.silver}}</td>
+              <td class="players__column-trophies players_column-trophies--bronze">{{player.bronze}}</td>
+            </tr>
+          </tbody>
+          <tfoot *ngIf="!loading" class="players__table-footer">
+            <tr>
+              <td colspan="5">
+                <div class="margin__top--xs">
+                  <span>
+                    <i class="icon-trophy color-gold" aria-hidden="true"></i> 3pts
+                  </span>
+                  <span class="margin__left--xs">
+                    <i class="icon-trophy color-silver" aria-hidden="true"></i> 2pts
+                  </span>
+                  <span class="margin__left--xs">
+                    <i class="icon-trophy color-bronze" aria-hidden="true"></i> 1pts
+                  </span>
+                </div>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>

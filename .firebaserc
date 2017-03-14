@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "prod": "micross-955d7",
+    "default": "micross-dev"
+  }
+}

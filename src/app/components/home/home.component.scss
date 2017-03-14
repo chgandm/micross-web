@@ -1,0 +1,40 @@
+@import '../../../styles.scss';
+
+.title {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.card {
+  background-color: $color-card-background;
+  text-align: left;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
+  border-radius: 2px;
+  margin-bottom: 9px;
+  margin-left: 0px;
+  margin-right: 0px;
+  cursor: pointer;
+}
+
+.card__pictogramm {
+  width: 80px;
+  height: 80px;
+  line-height: 80px; /* for the vertical alignment to function */
+  text-align: center;
+  vertical-align: middle;
+  font-size: 2.5em;
+}
+
+.card__title {
+  height: 80px;
+  line-height: 80px; /* for the vertical alignment to function */
+  text-align: left;
+  vertical-align: middle;
+  font-size: $font-size-h1;
+}
+
+@media (max-width: $screen-xxs) {
+  .card__title {
+    font-size: $font-size-h1-xxs;
+  }
+}

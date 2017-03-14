@@ -1,0 +1,147 @@
+<div class="row margin__top--m">
+  <div class="col-xs-12">
+    <h1>
+      <i class="icon-edit" aria-hidden="true"></i> Create a Puzzle
+    </h1>
+  </div>
+</div>
+
+<div *ngIf="envInfo.embeddedInWebView" class="row margin__top--xs">
+  <div class="col-xs-12">
+    <div class="alert alert-info">
+      <strong>Please note</strong>: Depending on the dimensions of your device, we generally recommend you to
+      create new puzzles on a Notebook or Tablet for improved comfort and usability.
+      <a (click)="shareLink()">Send yourself the link!</a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <h2><span class="circle margin__right--s">1</span> Select a Puzzle Size</h2>
+  </div>
+</div>
+<div class="row puzzle-size__container margin__top--xs">
+  <div class="col-xs-12">
+    <button
+      (click)="setPuzzleSize(PuzzleSizeType._5x5)"
+      class="btn puzzle-size__button"
+      [class.puzzle-size__button-active]="selectedPuzzleSize === PuzzleSizeType._5x5">
+      <i class="icon-square color-bronze" aria-hidden="true"></i> 5 x 5
+    </button>
+    <button (click)="setPuzzleSize(PuzzleSizeType._10x10)"
+            class="btn puzzle-size__button margin__left--xs"
+            [class.puzzle-size__button-active]="selectedPuzzleSize === PuzzleSizeType._10x10">
+      <i class="icon-th-large color-silver" aria-hidden="true"></i> 10 x 10
+    </button>
+    <button (click)="setPuzzleSize(PuzzleSizeType._15x15)"
+            class="btn puzzle-size__button margin__left--xs"
+            [class.puzzle-size__button-active]="selectedPuzzleSize === PuzzleSizeType._15x15">
+      <i class="icon-th color-gold" aria-hidden="true"></i> 15 x 15
+    </button>
+  </div>
+</div>
+
+<form (ngSubmit)="createPuzzle()" #puzzleForm="ngForm">
+
+  <div class="row margin__top--m">
+    <div class="col-xs-12">
+      <h2><span class="circle margin__right--s">2</span> Draw the Puzzle!</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="puzzle-editor__grid" (mousedown)="setDrawing(true)" (mouseup)="setDrawing(false)">
+        <template ngFor let-row [ngForOf]="puzzleRows">
+          <template ngFor let-col [ngForOf]="puzzleCols">
+            <div (mousedown)="toggleCell(row, col, true)"
+                 (mouseover)="toggleCell(row, col, false)"
+                 class="cell {{cellCssClass}}"
+                 [class.cell-active]="(puzzle.puzzleData[row][col] === 1)">
+
+            </div>
+          </template>
+        </template>
+      </div>
+    </div>
+  </div>
+
+  <div class="row margin__top--m">
+    <div class="col-xs-12">
+      <h2><span class="circle margin__right--s">3</span> Preview and Submit</h2>
+    </div>
+  </div>
+
+  <div class="row margin__top--xs">
+    <div class="col-xs-12">
+      <div class="alert alert-info">
+        You're about to publish this puzzle for other Micross users to see and play!
+        Note that we reserve the right to remove it from the game in case it's in violation of our standards.
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-5">
+      <div  class="puzzle-preview">
+        <app-puzzle-preview
+          width="120"
+          height="120"
+          color="#ebeeef"
+          animate="false"
+          [puzzleData]="puzzlePreview">
+        </app-puzzle-preview>
+      </div>
+    </div>
+    <div class="col-xs-7">
+        <div class="form-group">
+          <div class="input-group">
+              <span class="input-group-addon">
+                <i class="icon-puzzle-piece" aria-hidden="true"></i>
+              </span>
+            <label class="sr-only" for="name">name</label>
+            <input type="text" id="name" name="name"
+                   class="form-control" placeholder="Puzzle Name"
+                   [(ngModel)]="puzzle.puzzleName" #nameField="ngModel"
+                   required minlength="3" maxlength="24" />
+          </div>
+        </div>
+        <div>Author: {{puzzle.author}}</div>
+    </div>
+  </div>
+
+  <div *ngIf="puzzleForm.submitted" class="row margin__top--m" >
+    <div *ngIf="nameField.errors || !enoughCells" class="col-xs-12 alert alert-danger">
+      <ul>
+        <li [hidden]="!nameField.errors?.minlength && !nameField.errors?.maxlength">
+          The name of the puzzle needs to be between 3 and 24 characters.
+        </li>
+        <li [hidden]="enoughCells">
+          Your puzzle does not contain enough active cells. Please refine your drawing.
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="puzzleCreated" class="col-xs-12 margin__top--m">
+      <div class="alert alert-success">
+      Awesome - your puzzle has been created successfully!
+      Thanks a lot for your contribution to the Micross community.
+      </div>
+    </div>
+    <div *ngIf="puzzleCreationError" class="col-xs-12 margin__top--m">
+      <div class="alert alert-danger">
+        An unknown error occured while trying to create your puzzle. Please try again.
+      </div>
+    </div>
+  </div>
+
+  <div class="row margin__top--m">
+    <div class="col-xs-12">
+      <button type="submit"
+              class="btn btn-c_primary margin__bottom--xl"
+              [disabled]="nameField.errors?.required">
+        Create Puzzle
+      </button>
+    </div>
+  </div>
+
+</form>

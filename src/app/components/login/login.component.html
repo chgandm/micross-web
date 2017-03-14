@@ -1,0 +1,89 @@
+<div class="row margin__top--m">
+  <div class="col-xs-12">
+    <h1>
+      <i class="icon-sign-in" aria-hidden="true"></i> {{register ? 'Sign Up' : 'Login'}}
+    </h1>
+  </div>
+</div>
+
+<div class="row margin__top--m">
+  <div class="col-xs-12">
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+
+      <div class="form-group" *ngIf="register">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="icon-user input-group-addon__size" aria-hidden="true"></i>
+          </span>
+          <label class="sr-only" for="nickname">Nickname</label>
+          <input type="text" id="nickname" name="nickname"
+                 class="form-control" placeholder="Nickname"
+                 [(ngModel)]="nickname" #nicknameField="ngModel"
+                 required minlength="3" maxlength="12" />
+        </div>
+        <div *ngIf="loginForm.submitted && nicknameField.errors" class="margin__top--s">
+          <div [hidden]="!nicknameField.errors.minlength && !nicknameField.errors.maxlength" class="color-negative">
+            Your nickname must be between 3 and 12 characters.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="icon-envelope-o input-group-addon__size" aria-hidden="true"></i>
+          </span>
+          <label class="sr-only" for="email">Email</label>
+          <input type="email" id="email" name="email"
+                 class="form-control" placeholder="Email"
+                 [(ngModel)]="email" #emailField="ngModel"
+                 required validEmail />
+        </div>
+        <div *ngIf="loginForm.submitted && emailField.errors" class="margin__top--s">
+          <div [hidden]="!emailField.errors.validEmail" class="color-negative">
+            Please enter a valid email address.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="sr-only" for="password">Password</label>
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="icon-key input-group-addon__size" aria-hidden="true"></i>
+          </span>
+          <input type="password" id="password" name="password"
+                 class="form-control" placeholder="Password"
+                 [(ngModel)]="password" #passwordField="ngModel"
+                  required minlength="6"/>
+        </div>
+        <div *ngIf="loginForm.submitted && passwordField.errors" class="margin__top--s">
+          <div [hidden]="!passwordField.errors.minlength" class="color-negative">
+            Your password must be at least 6 characters.
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-c_primary"
+              [disabled]="passwordField.errors?.required || emailField.errors?.required">
+        {{register ? 'Create Account' : 'Login'}}
+      </button>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="loginError" class="alert alert-danger margin__top--m">
+  Sorry, the email address or password you used seem to be wrong <i class="icon-frown-o" aria-hidden="true"></i>.
+</div>
+
+<div *ngIf="registrationError" class="alert alert-danger margin__top--m">
+  Your account could not be created. {{registrationErrorMsg}}
+</div>
+
+<div *ngIf="!register" class="margin__top--l">
+  Don't have an account yet? <a class="link" (click)="toggle()">Sign up</a> now!
+</div>
+
+<div *ngIf="register" class="margin__top--l">
+  Already have an account? <a class="link" (click)="toggle()">Login</a> over here!
+</div>

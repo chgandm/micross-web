@@ -1,0 +1,70 @@
+<div class="row margin__top--m">
+  <div class="col-xs-12">
+    <h1>
+      <i [class]="evaluatePictogrammClasses()" aria-hidden="true"></i> {{title}}
+    </h1>
+  </div>
+</div>
+<div class="row margin__top--m">
+  <div class="col-xs-12">
+    <ul class="puzzles__list">
+      <li *ngFor="let puzzle of puzzleMetaData | async; let i = index; trackBy:trackByPuzzleId" class="puzzles__card">
+        <div (click)="goToRanking(puzzle.$key)" class="puzzles__card-content">
+          <div class="col-xs-3">
+            <app-puzzle-preview
+              *ngIf="puzzlePreviews.get(puzzle.$key)"
+              width="60"
+              height="60"
+              color="#ebeeef"
+              [puzzleData]="puzzlePreviews.get(puzzle.$key)">
+            </app-puzzle-preview>
+            <div *ngIf="!puzzlePreviews.get(puzzle.$key)" class="puzzles__no-preview">
+              <i class="icon-question-circle-o" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="col-xs-8">
+            <div class="puzzles__title">
+                {{puzzle.title.en}}
+            </div>
+
+            <div class="puzzles__trophies margin__top--s">
+              <ul class="trophies__list">
+                <li *ngIf="(puzzleTrophies.get(puzzle.$key) | async)?.gold;" class="trophies__list-item">
+                  <i class="icon-trophy color-gold" aria-hidden="true"></i>
+                  {{(puzzleTrophies.get(puzzle.$key) | async)?.gold}}
+                </li>
+                <li *ngIf="(puzzleTrophies.get(puzzle.$key) | async)?.silver" class="trophies__list-item">
+                  <i class="icon-trophy color-silver" aria-hidden="true"></i>
+                  {{(puzzleTrophies.get(puzzle.$key) | async)?.silver}}
+                </li>
+                <li *ngIf="(puzzleTrophies.get(puzzle.$key) | async)?.bronze" class="trophies__list-item">
+                  <i class="icon-trophy color-bronze" aria-hidden="true"></i>
+                  {{(puzzleTrophies.get(puzzle.$key) | async)?.bronze}}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-1 hidden-xs puzzles__detail-button">
+            <i class="icon-chevron-right" aria-hidden="true"></i>
+          </div>
+        </div>
+      </li>
+
+      <li *ngIf="loading" [@fadeInOut] class="puzzles__loading">
+        <img src="assets/img/spin.svg" />
+      </li>
+
+      <li *ngIf="(!dataAvailable && !loading )" [@fadeInOut] class="puzzles__nomore">
+        <p>No more puzzles available</p>
+        <p><i class="icon-frown-o" aria-hidden="true"></i></p>
+      </li>
+
+      <li *ngIf="(!loading && dataAvailable)" [@fadeInOut] class="puzzles__loadmore" (click)="loadMore()">
+        <i (click)="next()" class="icon-arrow-circle-down" aria-hidden="true"></i>
+        Load more...
+      </li>
+
+    </ul>
+
+  </div>
+</div>

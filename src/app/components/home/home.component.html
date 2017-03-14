@@ -1,0 +1,87 @@
+<div class="row margin__top--m title">
+  <h1 class="title__welcome" [hidden]="envInfo.embeddedInWebView || !user.loggedIn">Welcome, {{user.nickname}}</h1>
+  <h1 class="title__heading" [hidden]="!envInfo.embeddedInWebView"><i class="icon-gamepad" aria-hidden="true"></i> Play & Explore</h1>
+</div>
+
+<div (click)="goToPuzzleWithSize(puzzleSizeType._5x5)" class="row margin__top--s card">
+  <div class="col-xs-3">
+    <div class="card__pictogramm">
+      <i class="icon-square color-bronze" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="col-xs-9">
+    <div class="card__title">
+      Easy Puzzles
+    </div>
+  </div>
+</div>
+
+<div (click)="goToPuzzleWithSize(puzzleSizeType._10x10)" class="row margin__top--s card">
+  <div class="col-xs-3">
+    <div class="card__pictogramm">
+      <i class="icon-th-large color-silver" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="col-xs-9">
+    <div class="card__title">
+      Medium Puzzles
+    </div>
+  </div>
+</div>
+
+<div (click)="goToPuzzleWithSize(puzzleSizeType._15x15)" class="row margin__top--s card">
+  <div class="col-xs-3">
+    <div class="card__pictogramm">
+      <i class="icon-th color-gold" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="col-xs-9">
+    <div class="card__title">
+      Hard Puzzles
+    </div>
+  </div>
+</div>
+
+<!--
+<div (click)="goToTopPlayers()" class="row margin__top--m card">
+  <div class="col-xs-3">
+    <div class="card__pictogramm">
+      <i class="icon-users" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="col-xs-9">
+    <div class="card__title">
+      Top Players
+    </div>
+  </div>
+</div>
+-->
+
+<div *ngIf="!envInfo.embeddedInWebView">
+
+  <div class="row color-secondary">
+    <i class="icon-ellipsis-h" aria-hidden="true"></i>
+  </div>
+
+  <div (click)="goToCreatePuzzle()" class="row margin__top--xs card card__create">
+    <div class="col-xs-3">
+      <div class="card__pictogramm">
+        <i class="icon-puzzle-piece" aria-hidden="true"></i>
+      </div>
+    </div>
+    <div class="col-xs-9">
+      <div class="card__title">
+        Create Puzzles
+      </div>
+    </div>
+  </div>
+
+  <div [hidden]="user.loggedIn" class="margin__top--m margin__bottom--xs link__login">
+    <a routerLink="/login"><i class="icon-sign-in" aria-hidden="true"></i> Login / Sign up</a>
+  </div>
+
+  <div [hidden]="!user.loggedIn" class="margin__top--m margin__bottom--xs link__logout">
+    <a class="pointer" (click)="logout()"><i class="icon-sign-out" aria-hidden="true"></i> Logout</a>
+  </div>
+
+</div>
